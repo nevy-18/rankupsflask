@@ -13,25 +13,28 @@ app.secret_key = 'your_secret_key_here'
 raw_uri = os.environ.get('AIVEN_DB_URI')
 
 if raw_uri:
-    # Siguraduhing gamit ang tamang protocol driver para sa SQLAlchemy
+
+    # Convert mysql:// to mysql+pymysql://
     if raw_uri.startswith('mysql://'):
         raw_uri = raw_uri.replace('mysql://', 'mysql+pymysql://', 1)
-    
-    # Direktang idugtong ang tamang parameter gamit ang underscore (_) para iwas sa TypeError
-    if 'sslmode' not in raw_uri:
-        if '?' in raw_uri:
-            raw_uri += '&sslmode=REQUIRED'
-        else:
-            raw_uri += '?sslmode=REQUIRED'
-            
+
     app.config['SQLALCHEMY_DATABASE_URI'] = raw_uri
+
+    # SSL configuration for Aiven MySQL
+    app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
+        "connect_args": {
+            "ssl": {
+                "ssl_disabled": False
+            }
+        }
+    }
+
 else:
-    # Fallback sa iyong lokal na XAMPP kapag tinakbo sa computer mo
+    # Local XAMPP database
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@localhost/finalrankup'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-# Walang kaakibat na 'SQLALCHEMY_ENGINE_OPTIONS' para permanenteng burado ang 'ssl-mode' keyword error
 db = SQLAlchemy(app)
 
 @app.route('/', methods=['GET', 'POST'])
