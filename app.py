@@ -18,11 +18,11 @@ if raw_uri:
         raw_uri = raw_uri.replace('mysql://', 'mysql+pymysql://', 1)
     
     # Direktang idugtong ang tamang parameter gamit ang underscore (_) para iwas sa TypeError
-    if 'ssl_mode' not in raw_uri:
+    if 'sslmode' not in raw_uri:
         if '?' in raw_uri:
-            raw_uri += '&ssl_mode=REQUIRED'
+            raw_uri += '&sslmode=REQUIRED'
         else:
-            raw_uri += '?ssl_mode=REQUIRED'
+            raw_uri += '?sslmode=REQUIRED'
             
     app.config['SQLALCHEMY_DATABASE_URI'] = raw_uri
 else:
