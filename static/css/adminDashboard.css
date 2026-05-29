@@ -1,0 +1,215 @@
+/* ================= GOOGLE FONT ================= */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* ================= ROOT ================= */
+:root{
+    --primary:#6366f1;
+    --primary2:#3b82f6;
+    --bg1:#0b1220;
+    --bg2:#0f172a;
+
+    --card:rgba(255,255,255,0.06);
+    --glass:rgba(255,255,255,0.08);
+    --text:#e5e7eb;
+    --muted:#9ca3af;
+    --border:rgba(255,255,255,0.1);
+
+    --success:#22c55e;
+    --danger:#ef4444;
+}
+
+/* ================= GLOBAL ================= */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background: linear-gradient(135deg, var(--bg1), var(--bg2));
+    color:var(--text);
+    padding:25px;
+}
+
+/* ================= HEADER ================= */
+.header{
+    background:var(--glass);
+    border:1px solid var(--border);
+    backdrop-filter: blur(12px);
+    border-radius:18px;
+    padding:22px;
+    margin-bottom:25px;
+}
+
+/* GRID HEADER FOR PERFECT CENTER */
+.header-container{
+    display:grid;
+    grid-template-columns:1fr auto 1fr;
+    align-items:center;
+    gap:10px;
+}
+
+/* LEFT BRAND */
+.brand-area{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    justify-self:start;
+}
+
+.site-title{
+    font-size:16px;
+    font-weight:600;
+    color:var(--primary2);
+    letter-spacing:0.5px;
+}
+
+/* CENTER TITLE (IMPORTANT PART) */
+.dashboard-title{
+    justify-self:center;
+    font-size:26px;
+    font-weight:700;
+    text-align:center;
+    color:white;
+    padding:8px 18px;
+    border-radius:12px;
+    background: linear-gradient(90deg, var(--primary), var(--primary2));
+    box-shadow:0 10px 25px rgba(99,102,241,0.25);
+}
+
+/* RIGHT NAV */
+.navabar{
+    justify-self:end;
+}
+
+.nav-link{
+    text-decoration:none;
+    padding:10px 18px;
+    border-radius:10px;
+    background:rgba(239,68,68,0.15);
+    border:1px solid rgba(239,68,68,0.4);
+    color:#fecaca;
+    font-weight:500;
+    transition:0.3s;
+}
+
+.nav-link:hover{
+    background:var(--danger);
+    color:white;
+    transform:translateY(-2px);
+}
+
+/* ================= FLASH MESSAGES ================= */
+.msg{
+    padding:12px 15px;
+    border-radius:12px;
+    margin-bottom:12px;
+    font-size:14px;
+}
+
+.msg.success{
+    background:rgba(34,197,94,0.12);
+    border:1px solid var(--success);
+    color:var(--success);
+}
+
+.msg.error{
+    background:rgba(239,68,68,0.12);
+    border:1px solid var(--danger);
+    color:var(--danger);
+}
+
+/* ================= TABLE SECTION ================= */
+.table-section{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:20px;
+    margin-bottom:25px;
+    backdrop-filter: blur(12px);
+}
+
+.table-section h2{
+    margin-bottom:15px;
+    font-size:18px;
+    color:var(--primary2);
+}
+
+/* ================= TABLE ================= */
+table{
+    width:100%;
+    border-collapse:collapse;
+    overflow:hidden;
+    border-radius:12px;
+}
+
+th, td{
+    padding:12px;
+    font-size:14px;
+}
+
+th{
+    text-align:left;
+    background:rgba(99,102,241,0.18);
+    color:white;
+}
+
+tr{
+    border-bottom:1px solid var(--border);
+    transition:0.2s;
+}
+
+tr:hover{
+    background:rgba(255,255,255,0.05);
+}
+
+/* ================= ACTION BUTTONS ================= */
+td a{
+    text-decoration:none;
+    padding:6px 10px;
+    border-radius:8px;
+    font-size:13px;
+    font-weight:500;
+}
+
+td a[href*="edit"]{
+    background:rgba(59,130,246,0.2);
+    color:#93c5fd;
+    margin-right:5px;
+}
+
+td a[href*="delete"]{
+    background:rgba(239,68,68,0.2);
+    color:#fca5a5;
+}
+
+td a:hover{
+    opacity:0.8;
+}
+
+/* ================= EMPTY STATE ================= */
+td[colspan]{
+    text-align:center;
+    color:var(--muted);
+    padding:20px;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width:768px){
+    .header-container{
+        grid-template-columns:1fr;
+        text-align:center;
+        gap:15px;
+    }
+
+    .brand-area,
+    .navabar{
+        justify-self:center;
+    }
+
+    .dashboard-title{
+        font-size:20px;
+    }
+}

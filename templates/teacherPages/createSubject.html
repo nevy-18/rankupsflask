@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rank Up | Create Subject</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/createSubject.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="header-container">
+
+        <div class="brand-area">
+            <h1 class="site-title">Rank Up</h1>
+        </div>
+
+        <h1 class="page-title">Create Subject</h1>
+
+        <nav class="navbar">
+            <a class="back-home" href="{{ url_for('teacher_dashboard') }}">Back to Home</a>
+        </nav>
+
+    </div>
+</header>
+
+<!-- FLASH MESSAGES -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="flash-message {{ category }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+<main class="container">
+
+    <!-- FORM CARD -->
+    <section class="card form-card">
+
+        <h2>Create Subject</h2>
+
+        <form action="{{ url_for('create_subject') }}" method="POST">
+
+            <div class="form-grid">
+
+                <div class="input-group">
+                    <label>Subject Code</label>
+                    <input type="text" name="subject_code" placeholder="ex. IT101" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Subject Name</label>
+                    <input type="text" name="subject_name" placeholder="ex. Programming 1" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Units</label>
+                    <input type="number" name="units" placeholder="ex. 3" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Semester</label>
+                    <select name="semester" required>
+                        <option value="">Select Semester</option>
+                        <option value="1st Semester">1st Semester</option>
+                        <option value="2nd Semester">2nd Semester</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Year Level</label>
+                    <select name="year_level" required>
+                        <option value="">Select Year Level</option>
+                        <option value="1st Year">1st Year</option>
+                        <option value="2nd Year">2nd Year</option>
+                        <option value="3rd Year">3rd Year</option>
+                        <option value="4th Year">4th Year</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Course</label>
+                    <input type="text" name="course" placeholder="ex. BSIT" required>
+                </div>
+
+            </div>
+
+            <button type="submit" class="btn-primary">Create Subject</button>
+
+        </form>
+
+    </section>
+
+    <!-- TABLE CARD -->
+    <section class="card table-card">
+
+        <h2>Subject List</h2>
+
+        <div class="table-container">
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Subject Code</th>
+                        <th>Subject Name</th>
+                        <th>Units</th>
+                        <th>Semester</th>
+                        <th>Year Level</th>
+                        <th>Course</th>
+                        <th>Date Created</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% if subjects %}
+                        {% for row in subjects %}
+                        <tr>
+                            <td>{{ row['subject_id'] }}</td>
+                            <td>{{ row['subject_code'] }}</td>
+                            <td>{{ row['subject_name'] }}</td>
+                            <td>{{ row['units'] }}</td>
+                            <td>{{ row['semester'] }}</td>
+                            <td>{{ row['year_level'] }}</td>
+                            <td>{{ row['course'] }}</td>
+                            <td>{{ row['created_at'] if row['created_at'] else 'N/A' }}</td>
+                        </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="8" class="empty">No subjects created yet.</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+
+            </table>
+        </div>
+
+    </section>
+
+</main>
+
+</body>
+</html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Rank Up | Student Registration</title>
+
+    <!-- GOOGLE FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- CSS -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/studentRegister.css') }}"
+    >
+
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+    <div class="header-container">
+
+        <!-- BRAND AREA -->
+        <div class="brand-area">
+
+            <h1 class="site-title">
+               Student Registration
+            </h1>
+
+        </div>
+
+        <!-- NAVIGATION -->
+        <nav class="navbar">
+
+            <a href="{{ url_for('landing_page') }}">
+                Back to Home
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+<!-- ================= MAIN ================= -->
+
+<main class="main">
+
+    <section class="form-container">
+
+        <div class="form-card">
+
+            <!-- FORM HEADER -->
+            <div class="form-header">
+
+                <h2>
+                    Create Student Account
+                </h2>
+
+                <p>
+                    Register your student account to access
+                    rankings, academic records, and performance tracking.
+                </p>
+
+            </div>
+
+            <!-- FLASH MESSAGES -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+
+                        <div class="{{ category }}-message">
+                            {{ message }}
+                        </div>
+
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <!-- FORM -->
+            <form
+                action="{{ url_for('student_register') }}"
+                method="POST"
+                class="register-form"
+            >
+
+                <!-- FULL NAME -->
+                <div class="input-group">
+
+                    <label for="fullName">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="fullName"
+                        name="fullName"
+                        placeholder="Enter full name"
+                        required
+                    >
+
+                </div>
+
+                <!-- COURSE -->
+                <div class="input-group">
+
+                    <label for="course">
+                        Course
+                    </label>
+
+                    <select
+                        name="course"
+                        id="course"
+                        required
+                    >
+
+                        <option value="">
+                            Select Course
+                        </option>
+
+                        <option value="BSIT">
+                            BSIT
+                        </option>
+
+                        <option value="BSCS">
+                            BSCS
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <!-- YEAR -->
+                <div class="input-group">
+
+                    <label for="year">
+                        Year
+                    </label>
+
+                    <select
+                        name="year"
+                        id="year"
+                        required
+                    >
+
+                        <option value="">
+                            Select Year
+                        </option>
+
+                        <option value="First year">
+                            First Year
+                        </option>
+
+                        <option value="Second year">
+                            Second Year
+                        </option>
+
+                        <option value="Third year">
+                            Third Year
+                        </option>
+
+                        <option value="Fourth year">
+                            Fourth Year
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <!-- SECTION -->
+                <div class="input-group">
+
+                    <label for="section">
+                        Section
+                    </label>
+
+                    <input
+                        type="text"
+                        id="section"
+                        name="section"
+                        placeholder="Enter section"
+                        required
+                    >
+
+                </div>
+
+                <!-- EMAIL -->
+                <div class="input-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter email address"
+                        required
+                    >
+
+                </div>
+
+                <!-- USERNAME -->
+                <div class="input-group">
+
+                    <label for="username">
+                        Username
+                    </label>
+
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Create username"
+                        required
+                    >
+
+                </div>
+
+                <!-- PASSWORD -->
+                <div class="input-group password-box">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <div class="password-wrapper">
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Create password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            id="toggleBtn"
+                            onclick="togglePassword()"
+                        >
+                            Show
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!-- SUBMIT BUTTON -->
+                <button
+                    type="submit"
+                    class="btn-submit"
+                >
+                    Register Account
+                </button>
+
+                <!-- LOGIN LINK -->
+                <div class="bottom-text">
+
+                    <p>
+                        Already have an account?
+
+                        <a href="{{ url_for('student_login') }}">
+                            Login here
+                        </a>
+                    </p>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </section>
+
+</main>
+
+<!-- ================= SCRIPT ================= -->
+
+<script>
+
+function togglePassword(){
+
+    let passwordInput =
+        document.getElementById("password");
+
+    let toggleBtn =
+        document.getElementById("toggleBtn");
+
+    if(passwordInput.type === "password"){
+
+        passwordInput.type = "text";
+
+        toggleBtn.innerHTML = "Hide";
+
+    } else {
+
+        passwordInput.type = "password";
+
+        toggleBtn.innerHTML = "Show";
+    }
+}
+
+</script>
+
+</body>
+</html>

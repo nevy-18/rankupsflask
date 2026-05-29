@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rank Up | Join Subjects</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/joinSub.css') }}">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="header-container">
+
+        <div class="brand-area">
+            <h1 class="site-title">Rank Up</h1>
+        </div>
+
+        <h1 class="page-title">Join Subjects</h1>
+
+        <nav class="navbar">
+            <a href="{{ url_for('teacher_dashboard') }}" class="back-btn">
+                Back to Home
+            </a>
+        </nav>
+
+    </div>
+</header>
+
+<div class="container">
+
+<!-- FLASH MESSAGES (FIXED ALIGNMENT) -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="flash-wrapper">
+            {% for category, message in messages %}
+                <div class="alert {{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+
+<!-- SEARCH -->
+<section class="card">
+    <h2>Search Student</h2>
+
+    <form action="{{ url_for('join_subject') }}" method="GET" class="form">
+        <input type="text" name="search" placeholder="Search full name"
+               value="{{ search_query }}" required>
+
+        <button type="submit">Search</button>
+    </form>
+</section>
+
+{% if student %}
+
+<!-- SELECTED STUDENT -->
+<section class="card">
+    <h3>Selected Student</h3>
+
+    <p class="student-info">
+        {{ student['full_name'] }} - {{ student['course'] }}
+        {{ student['year_level'] }} {{ student['section'] }}
+    </p>
+
+    <h3>Join Student to Subject</h3>
+
+    <form action="{{ url_for('join_subject') }}" method="POST" class="form">
+        <input type="hidden" name="join_subject" value="1">
+        <input type="hidden" name="student_id" value="{{ student['student_id'] }}">
+
+        <select name="subject_id" required>
+            <option value="">Select Subject</option>
+            {% for sub in all_subjects %}
+                <option value="{{ sub['subject_id'] }}">
+                    {{ sub['subject_code'] }} - {{ sub['subject_name'] }}
+                    | {{ sub['course'] }} | {{ sub['year_level'] }} | {{ sub['semester'] }}
+                </option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Join Subject</button>
+    </form>
+</section>
+
+<!-- ENROLLED -->
+<section class="card">
+    <h3>Enrolled Subjects</h3>
+
+    <div class="table-wrapper">
+        <table>
+            <tr>
+                <th>Subject Code</th>
+                <th>Subject Name</th>
+                <th>Units</th>
+                <th>Semester</th>
+            </tr>
+
+            {% if enrolled_subjects %}
+                {% for row in enrolled_subjects %}
+                <tr>
+                    <td>{{ row['subject_code'] }}</td>
+                    <td>{{ row['subject_name'] }}</td>
+                    <td>{{ row['units'] }}</td>
+                    <td>{{ row['semester'] }}</td>
+                </tr>
+                {% endfor %}
+            {% else %}
+            <tr>
+                <td colspan="4" class="empty">
+                    Not enrolled in any subjects yet.
+                </td>
+            </tr>
+            {% endif %}
+        </table>
+    </div>
+</section>
+
+{% endif %}
+
+<!-- STUDENT LIST -->
+<section class="card">
+    <h2>Student List</h2>
+
+    <div class="table-wrapper">
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Full Name</th>
+                <th>Course</th>
+                <th>Year Level</th>
+                <th>Section</th>
+            </tr>
+
+            {% for s in all_students %}
+            <tr>
+                <td>{{ s['student_id'] }}</td>
+                <td>{{ s['full_name'] }}</td>
+                <td>{{ s['course'] }}</td>
+                <td>{{ s['year_level'] }}</td>
+                <td>{{ s['section'] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</section>
+
+</div>
+
+</body>
+</html>

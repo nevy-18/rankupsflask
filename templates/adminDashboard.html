@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/adminDashboard.css') }}">
+</head>
+<body>
+
+<header class="header">
+    <div class="header-container">
+
+        <div class="brand-area">
+            <!-- LOGO REMOVED AS REQUESTED -->
+
+            <h1 class="site-title">Student Ranking Management System</h1>
+        </div>
+
+        <h1 class="dashboard-title">🎓 Admin Dashboard</h1>
+
+        <nav class="navabar" aria-label="Main Navigation">
+            <a href="{{ url_for('logout') }}" class="nav-link">Log out</a>
+        </nav>
+
+    </div>
+</header>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            {% if category == 'error' %}
+                <p class="msg error">{{ message }}</p>
+            {% else %}
+                <p class="msg success">{{ message }}</p>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+<hr>
+
+<section class="table-section">
+<h2>Teacher List</h2>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Full Name</th>
+        <th>Department</th>
+        <th>Email</th>
+        <th>Username</th>
+        <th>Actions</th>
+    </tr>
+
+    {% if teachers %}
+        {% for row in teachers %}
+        <tr>
+            <td>{{ row['teacher_id'] }}</td>
+            <td>{{ row['full_name'] }}</td>
+            <td>{{ row['department'] }}</td>
+            <td>{{ row['email'] }}</td>
+            <td>{{ row['username'] }}</td>
+            <td>
+                <a href="{{ url_for('edit_teacher', teacher_id=row['teacher_id']) }}">Edit</a> |
+                <a href="{{ url_for('admin_delete_record', data_type='teacher', data_id=row['teacher_id']) }}" onclick="return confirm('Delete this teacher?');">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    {% else %}
+        <tr>
+            <td colspan="6">No teachers registered yet.</td>
+        </tr>
+    {% endif %}
+</table>
+</section>
+
+<hr>
+
+<section class="table-section">
+<h2>Student List</h2>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Full Name</th>
+        <th>Course</th>
+        <th>Year Level</th>
+        <th>Section</th>
+        <th>Email</th>
+        <th>Username</th>
+        <th>Actions</th>
+    </tr>
+
+    {% if students %}
+        {% for row in students %}
+        <tr>
+            <td>{{ row['student_id'] }}</td>
+            <td>{{ row['full_name'] }}</td>
+            <td>{{ row['course'] }}</td>
+            <td>{{ row['year_level'] }}</td>
+            <td>{{ row['section'] }}</td>
+            <td>{{ row['email'] }}</td>
+            <td>{{ row['username'] }}</td>
+            <td>
+                <a href="{{ url_for('edit_student', student_id=row['student_id']) }}">Edit</a> |
+                <a href="{{ url_for('admin_delete_record', data_type='student', data_id=row['student_id']) }}" onclick="return confirm('Delete this student?');">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    {% else %}
+        <tr>
+            <td colspan="8">No students registered yet.</td>
+        </tr>
+    {% endif %}
+</table>
+</section>
+
+<hr>
+
+<section class="table-section">
+<h2>Subject List</h2>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Subject Code</th>
+        <th>Subject Name</th>
+        <th>Units</th>
+        <th>Semester</th>
+        <th>Year Level</th>
+        <th>Course</th>
+        <th>Action</th>
+    </tr>
+
+    {% if subjects %}
+        {% for row in subjects %}
+        <tr>
+            <td>{{ row['subject_id'] }}</td>
+            <td>{{ row['subject_code'] }}</td>
+            <td>{{ row['subject_name'] }}</td>
+            <td>{{ row['units'] }}</td>
+            <td>{{ row['semester'] }}</td>
+            <td>{{ row['year_level'] }}</td>
+            <td>{{ row['course'] }}</td>
+            <td>
+                <a href="{{ url_for('edit_subject', subject_id=row['subject_id']) }}">Edit</a> |
+                <a href="{{ url_for('admin_delete_record', data_type='subject', data_id=row['subject_id']) }}" onclick="return confirm('Delete this subject?');">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    {% else %}
+        <tr>
+            <td colspan="8">No subjects created yet.</td>
+        </tr>
+    {% endif %}
+</table>
+</section>
+
+</body>
+</html>

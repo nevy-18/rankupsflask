@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>
+    Rank Up | Student Dashboard
+</title>
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/studentDashboard.css') }}"
+>
+
+</head>
+
+<body>
+
+<main class="dashboard">
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div>
+
+            
+
+            <!-- SIDEBAR TOP -->
+            <div class="sidebar-top">
+
+                <h2>
+                    Student Dashboard
+                </h2>
+
+                <span>
+                    Student Ranking System
+                </span>
+
+            </div>
+
+            <!-- SIDEBAR MENU -->
+            <nav class="sidebar-menu">
+
+                <a href="#profile" class="active">
+                    Dashboard
+                </a>
+
+                <a href="#stats">
+                    Overview
+                </a>
+
+                <a href="#leaderboard">
+                    Leaderboard
+                </a>
+
+                <a href="#settings">
+                    Settings
+                </a>
+
+                <a href="{{ url_for('logout') }}">
+                    Logout
+                </a>
+
+            </nav>
+
+        </div>
+
+    </aside>
+
+    <!-- ================= CONTENT ================= -->
+
+    <section class="content">
+
+        <!-- TOPBAR -->
+        <div class="topbar">
+
+            <div>
+
+                <h2>
+                    Welcome,
+                    {{ student['full_name'] }} 👋
+                </h2>
+
+                <p>
+                    Monitor your academic performance and ranking progress.
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- ================= PROFILE ================= -->
+
+        <div id="profile" class="profile-card">
+
+            <!-- PROFILE DETAILS -->
+            <div class="profile-details">
+
+                <!-- PROFILE HEADER -->
+                <div class="profile-header">
+
+                    <h2>
+                        Student Profile
+                    </h2>
+
+                    <p>
+                        Your academic information and personal details
+                    </p>
+
+                </div>
+
+                <!-- STUDENT INFO -->
+                <div class="student-info">
+
+                    <!-- LEFT -->
+                    <div class="left-info">
+
+                        <div class="info-card">
+
+                            <span>
+                                Course
+                            </span>
+
+                            <h3>
+                                {{ student['course'] }}
+                            </h3>
+
+                        </div>
+
+                        <div class="info-card">
+
+                            <span>
+                                Year Level
+                            </span>
+
+                            <h3>
+                                {{ student['year_level'] }}
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+                    <!-- RIGHT -->
+                    <div class="right-info">
+
+                        <div class="info-card">
+
+                            <span>
+                                Section
+                            </span>
+
+                            <h3>
+                                {{ student['section'] }}
+                            </h3>
+
+                        </div>
+
+                        <div class="info-card">
+
+                            <span>
+                                Email Address
+                            </span>
+
+                            <h3>
+                                {{ student['email'] }}
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- PROFILE IMAGE -->
+            <div class="profile-image">
+
+                <img
+                    src="{{ url_for('static', filename='images/ranking.png') }}"
+                    alt="Student Ranking"
+                >
+
+                <p>
+                    Stay consistent and improve your academic standing.
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- ================= STATS ================= -->
+
+        <div id="stats" class="stats">
+
+            <div class="stat-box">
+
+                <div class="stat-icon">
+                    📚
+                </div>
+
+                <h3>
+                    Performance
+                </h3>
+
+                <p>
+                    Track your academic growth and achievements.
+                </p>
+
+            </div>
+
+            <div class="stat-box">
+
+                <div class="stat-icon">
+                    🏆
+                </div>
+
+                <h3>
+                    Rank Goal
+                </h3>
+
+                <p>
+                    Climb higher and improve your rankings.
+                </p>
+
+            </div>
+
+            <div class="stat-box">
+
+                <div class="stat-icon">
+                    🎯
+                </div>
+
+                <h3>
+                    Focus
+                </h3>
+
+                <p>
+                    Consistency and dedication lead to success.
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- ================= LEADERBOARD ================= -->
+
+        <div id="leaderboard" class="leaderboard-card">
+
+            <div class="leaderboard-top">
+
+                <h2>
+                    🏆 Leaderboard Rankings
+                </h2>
+
+                <p>
+                    Top performing students based on GWA
+                </p>
+
+            </div>
+
+            <table>
+
+                <tr>
+
+                    <th>Rank</th>
+                    <th>Name</th>
+                    <th>Course</th>
+                    <th>Year</th>
+                    <th>GWA</th>
+                    <th>Badge</th>
+
+                </tr>
+
+                {% for row in leaderboard_results %}
+
+                <tr>
+
+                    <td>{{ loop.index }}</td>
+
+                    <td>{{ row['full_name'] }}</td>
+
+                    <td>{{ row['course'] }}</td>
+
+                    <td>{{ row['year_level'] }}</td>
+
+                    <td>{{ row['gwa'] }}</td>
+
+                    <td>
+
+                        {% if loop.index == 1 %}
+                            🥇 Gold
+                        {% elif loop.index == 2 %}
+                            🥈 Silver
+                        {% elif loop.index == 3 %}
+                            🥉 Bronze
+                        {% else %}
+                            🎖 Participant
+                        {% endif %}
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </table>
+
+        </div>
+
+        <!-- ================= SUBJECT PERFORMANCE ================= -->
+
+        <div class="subject-performance">
+
+            <h2>
+                📊 Subject Performance
+            </h2>
+
+            <div class="subject">
+
+                <div class="subject-name">
+                    Web Systems and Technologies
+                </div>
+
+                <div class="progress-bar">
+
+                    <div class="progress-fill fill1"></div>
+
+                </div>
+
+            </div>
+
+            <div class="subject">
+
+                <div class="subject-name">
+                    Integrative Programming 1
+                </div>
+
+                <div class="progress-bar">
+
+                    <div class="progress-fill fill2"></div>
+
+                </div>
+
+            </div>
+
+            <div class="subject">
+
+                <div class="subject-name">
+                    Multimedia Systems
+                </div>
+
+                <div class="progress-bar">
+
+                    <div class="progress-fill fill3"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ================= SETTINGS ================= -->
+
+        <div id="settings" class="settings-dropdown">
+
+            <div
+                class="settings-header"
+                onclick="this.parentElement.classList.toggle('active')"
+            >
+
+                ⚙ Account Settings
+
+                <span>
+                    ▼
+                </span>
+
+            </div>
+
+            <div class="settings-content">
+
+                <div class="setting-item">
+                    Profile Status: Active
+                </div>
+
+                <div class="setting-item">
+                    Security: Enabled
+                </div>
+
+                <div class="setting-item">
+                    Notifications: ON
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+</body>
+</html>

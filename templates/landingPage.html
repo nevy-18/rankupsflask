@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Rank Up - A Student Ranking System">
+
+    <title>Rank Up | Student Ranking System</title>
+
+    <!-- GOOGLE FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/landingPage.css') }}">
+
+</head>
+
+<body>
+
+<!-- =========================================
+HEADER SECTION
+========================================= -->
+<header class="header">
+
+    <div class="header-container">
+
+        <!-- BRAND -->
+        <div class="brand-area">
+
+           <img src="{{ url_for('static', filename='images/rankuplogo.png') }}"
+           alt="Rank Up System Logo"
+           class="logo-img">
+
+        </div>
+
+        <!-- NAVIGATION -->
+        <nav class="navbar">
+
+            <a href="{{ url_for('about_system') }}"
+               class="nav-link">
+
+                About System
+
+            </a>
+
+            <a href="#loginSection"
+               class="nav-link">
+
+                Login
+
+            </a>
+
+            <a href="#registerSection"
+               class="nav-link register-nav-btn">
+
+                Create Account
+
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+<!-- =========================================
+MAIN CONTENT
+========================================= -->
+<main class="main-content">
+
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+
+        <!-- DESIGN EFFECT -->
+        <div class="circle one"></div>
+        <div class="circle two"></div>
+
+        <div class="hero-container">
+
+            <!-- LEFT CONTENT -->
+            <div class="hero-left">
+
+                <span class="mini-title">
+                    Student Ranking Management System
+                </span>
+
+                <h2 class="welcome-heading">
+                    Empowering Academic Excellence Through Ranking
+                </h2>
+
+                <p class="tagline">
+
+                    Track your academic progress, compete with peers,
+                    monitor rankings, and build a more competitive
+                    learning environment with Rank Up.
+
+                </p>
+
+                <!-- PROFESSIONAL INFO BOXES -->
+                <div class="hero-stats">
+
+                    <div class="stat-box">
+
+                        <h3>Real-Time</h3>
+
+                        <p>Student Rankings</p>
+
+                    </div>
+
+                    <div class="stat-box">
+
+                        <h3>Performance</h3>
+
+                        <p>Monitoring System</p>
+
+                    </div>
+
+                    <div class="stat-box">
+
+                        <h3>Academic</h3>
+
+                        <p>Achievement Tracking</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- LOGIN CONTAINER -->
+            <div class="login-container"
+                 id="loginSection">
+
+                <h3 class="login-title">
+
+                    Login to an Account
+
+                </h3>
+
+                <p class="login-subtitle">
+
+                    Enter your account credentials below.
+
+                </p>
+
+                <!-- ERROR MESSAGE -->
+                {% if error %}
+
+                    <p class="error-message">
+
+                        {{ error }}
+
+                    </p>
+
+                {% endif %}
+
+                <!-- LOGIN FORM -->
+                <form action="{{ url_for('landing_page') }}"
+                      method="POST">
+
+                    <input type="text"
+                           name="username"
+                           placeholder="Enter Username"
+                           required>
+
+                    <br><br>
+
+                    <div class="password-wrapper">
+
+                        <input id="password"
+                               type="password"
+                               name="password"
+                               placeholder="Enter Password"
+                               required>
+
+                        <button type="button"
+                                onclick="togglePassword()"
+                                id="toggleBtn"
+                                class="toggle-password-btn">
+
+                            Show
+
+                        </button>
+
+                    </div>
+
+                    <br><br>
+
+                    <button type="submit"
+                            class="login-btn">
+
+                        Login Account
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- REGISTER SECTION -->
+    <section class="register-section"
+             id="registerSection">
+
+        <div class="register-container">
+
+            <h3 class="register-title">
+
+                Create an Account
+
+            </h3>
+
+            <p class="register-subtitle">
+
+                Choose your role and start your academic journey.
+
+            </p>
+
+            <div class="register-buttons-group">
+
+                <a href="{{ url_for('student_register') }}">
+
+                    <button type="button">
+
+                        Student Register
+
+                    </button>
+
+                </a>
+
+                <a href="{{ url_for('teacher_register') }}">
+
+                    <button type="button">
+
+                        Teacher Register
+
+                    </button>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <p>
+
+            &copy; 2026 Rank Up System. All rights reserved.
+
+        </p>
+
+    </div>
+
+</footer>
+
+<!-- =========================================
+SHOW/HIDE PASSWORD SCRIPT
+========================================= -->
+<script>
+
+function togglePassword(){
+
+    let passwordInput =
+        document.getElementById("password");
+
+    let toggleBtn =
+        document.getElementById("toggleBtn");
+
+    if(passwordInput.type === "password"){
+
+        passwordInput.type = "text";
+
+        toggleBtn.innerHTML = "Hide";
+
+    } else {
+
+        passwordInput.type = "password";
+
+        toggleBtn.innerHTML = "Show";
+    }
+}
+
+</script>
+
+</body>
+</html>

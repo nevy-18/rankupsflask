@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- ================= META ================= -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ================= TITLE ================= -->
+    <title>Rank Up | Teacher Login</title>
+
+    <!-- ================= CSS ================= -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/teacherLogin.css') }}"
+    >
+
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="header">
+
+        <div class="header-container">
+
+            <!-- BRAND -->
+            <div class="brand-area">
+
+               <img src="{{ url_for('static', filename='images/rankuplogo (2).png') }}"
+               alt="Rank Up System Logo"
+               class="logo-img">
+
+            
+
+            </div>
+
+            <!-- PAGE TITLE -->
+            <div class="header-title">
+                <h1>Teacher Login</h1>
+                <p>Student Ranking Management System</p>
+            </div>
+
+            <!-- NAVIGATION -->
+            <nav class="navbar">
+                <a href="{{ url_for('landing_page') }}">
+                    Back to Home
+                </a>
+            </nav>
+
+        </div>
+
+    </header>
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="main-content">
+
+        <div class="main-container">
+
+            <!-- LOGIN HEADER -->
+            <div class="login-top">
+
+                <h2 class="login-heading">
+                    Login to Your Account
+                </h2>
+
+                <p class="login-subtext">
+                    Access your teacher dashboard and manage student rankings efficiently.
+                </p>
+
+            </div>
+
+            <!-- FLASH MESSAGES -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="flash-wrapper">
+
+                        {% for category, message in messages %}
+
+                            {% if category == 'error' %}
+
+                                <p class="flash-message error-message">
+                                    {{ message }}
+                                </p>
+
+                            {% else %}
+
+                                <p class="flash-message success-message">
+                                    {{ message }}
+                                </p>
+
+                            {% endif %}
+
+                        {% endfor %}
+
+                    </div>
+                {% endif %}
+            {% endwith %}
+
+            <!-- LOGIN FORM -->
+            <form
+                action="{{ url_for('teacher_login') }}"
+                method="POST"
+                class="login-form"
+                autocomplete="off"
+            >
+
+                <!-- USERNAME -->
+                <div class="form-group">
+
+                    <label for="username">
+                        Username
+                    </label>
+
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Enter your username"
+                        required
+                    >
+
+                </div>
+
+                <!-- PASSWORD -->
+                <div class="form-group password-container">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        onclick="togglePassword()"
+                        id="toggleBtn"
+                    >
+                        Show
+                    </button>
+
+                </div>
+
+                <!-- BUTTON -->
+                <button
+                    type="submit"
+                    class="login-button"
+                >
+                    Login
+                </button>
+
+            </form>
+
+            <!-- FOOTER -->
+            <div class="login-footer">
+
+                <p>
+                    © 2026 Rank Up • Teacher Management Portal
+                </p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- ================= SCRIPT ================= -->
+
+    <script>
+
+        // SHOW / HIDE PASSWORD
+
+        function togglePassword(){
+
+            let passwordInput = document.getElementById("password");
+            let toggleBtn = document.getElementById("toggleBtn");
+
+            if(passwordInput.type === "password"){
+
+                passwordInput.type = "text";
+                toggleBtn.innerHTML = "Hide";
+
+            }else{
+
+                passwordInput.type = "password";
+                toggleBtn.innerHTML = "Show";
+            }
+        }
+
+    </script>
+
+</body>
+</html>

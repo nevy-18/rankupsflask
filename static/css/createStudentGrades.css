@@ -1,0 +1,260 @@
+/* ================= ROOT ================= */
+
+:root{
+    --primary:#3b82f6;
+    --secondary:#6366f1;
+    --text:#cbd5e1;
+    --card:rgba(255,255,255,0.08);
+    --border:rgba(255,255,255,0.08);
+}
+
+/* ================= GLOBAL ================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:
+    radial-gradient(circle at top left, rgba(59,130,246,0.18), transparent 35%),
+    radial-gradient(circle at bottom right, rgba(99,102,241,0.18), transparent 35%),
+    linear-gradient(135deg,#020617,#0f172a,#020617);
+
+    color:white;
+}
+
+/* ================= LAYOUT ================= */
+
+.dashboard{
+    display:flex;
+    min-height:100vh;
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar{
+    width:260px;
+    padding:30px 20px;
+    background:linear-gradient(180deg,#0f172a,#1e293b,#2563eb);
+    position:sticky;
+    top:0;
+}
+
+.sidebar-top h2{
+    font-size:30px;
+}
+
+.sidebar-top span{
+    font-size:13px;
+    color:var(--text);
+}
+
+.sidebar-menu{
+    margin-top:30px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.sidebar-menu a{
+    text-decoration:none;
+    color:white;
+    padding:12px;
+    border-radius:12px;
+    transition:.3s;
+}
+
+.sidebar-menu a:hover,
+.sidebar-menu a.active{
+    background:rgba(255,255,255,0.12);
+    transform:translateX(5px);
+}
+
+/* ================= CONTENT ================= */
+
+.content{
+    flex:1;
+    padding:28px;
+}
+
+/* ================= TOPBAR ================= */
+
+.topbar{
+    background:linear-gradient(135deg,#1e293b,#2563eb,#6366f1);
+    padding:24px;
+    border-radius:20px;
+    margin-bottom:20px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+}
+
+.topbar-text h2{
+    font-size:32px;
+}
+
+.topbar-text p{
+    color:var(--text);
+    font-size:14px;
+}
+
+/* ================= BACK BUTTON ================= */
+
+.back-home{
+    padding:10px 16px;
+    border-radius:10px;
+    text-decoration:none;
+    color:white;
+    font-weight:500;
+
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+
+    transition:.3s;
+    white-space:nowrap;
+}
+
+.back-home:hover{
+    transform:translateY(-3px);
+    box-shadow:0 8px 20px rgba(59,130,246,.25);
+}
+
+/* ================= CARDS ================= */
+
+.profile-card,
+.leaderboard-card,
+.subject-performance{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:22px;
+    margin-bottom:20px;
+    backdrop-filter:blur(12px);
+}
+
+/* ================= SEARCH ================= */
+
+.search-form{
+    display:flex;
+    gap:10px;
+    margin-top:10px;
+
+    max-width:450px; /* paliit ng buong search area */
+}
+
+.search-form input{
+
+    width:100%;
+
+    max-width:300px; /* size ng search bar */
+
+    padding:10px 14px;
+
+    border-radius:10px;
+
+    border:none;
+}
+
+.search-form button{
+    padding:12px 16px;
+    border:none;
+    border-radius:10px;
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    color:white;
+    cursor:pointer;
+}
+
+/* ================= TABLE ================= */
+
+.table-container{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    background:linear-gradient(90deg,var(--primary),var(--secondary));
+    padding:12px;
+}
+
+td{
+    padding:12px;
+    border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+/* ================= INPUT ================= */
+
+.grade-input{
+    width:90px;
+    padding:8px;
+    border-radius:8px;
+    border:none;
+}
+
+/* ================= BUTTON ================= */
+
+.update-btn{
+    margin-top:15px;
+    padding:12px 18px;
+    border:none;
+    border-radius:10px;
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    color:white;
+    cursor:pointer;
+}
+
+/* ================= ACTION ================= */
+
+.action-buttons a{
+    margin-right:10px;
+    color:#93c5fd;
+    text-decoration:none;
+}
+
+/* ================= FLASH MESSAGE SYSTEM (NEW ADDITION ONLY) ================= */
+
+.flash-message{
+    max-width:900px;
+    margin:0 auto 18px auto;
+    padding:14px 18px;
+    border-radius:12px;
+    font-size:14px;
+    font-weight:500;
+    text-align:center;
+    backdrop-filter:blur(12px);
+    animation:fadeIn .25s ease;
+}
+
+/* ERROR */
+.flash-message.error{
+    background:rgba(239,68,68,0.12);
+    border:1px solid rgba(239,68,68,0.4);
+    color:#fca5a5;
+}
+
+/* SUCCESS (GREEN PROFESSIONAL STYLE) */
+.flash-message.success{
+    background:rgba(34,197,94,0.12);
+    border:1px solid rgba(34,197,94,0.4);
+    color:#86efac;
+    box-shadow:0 0 18px rgba(34,197,94,0.15);
+}
+
+/* ANIMATION */
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(-10px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rank Up | About System</title>
+
+    <!-- LINKED CSS (IMPORTANT) -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/aboutSystem.css') }}">
+</head>
+
+<body>
+
+    <div class="circle one"></div>
+    <div class="circle two"></div>
+
+    <!-- ================= HEADER ================= -->
+    <header class="header">
+        <div class="header-container">
+
+            <div class="brand-area">
+
+                <!-- LOGO -->
+                <img src="{{ url_for('static', filename='images/rankuplogo.png') }}" 
+                     alt="RankUp Logo" 
+                     class="logo-img">
+
+                <!-- LOGO LABEL -->
+                <span class="logo-caption">Student Ranking Management System</span>
+
+            </div>
+
+            <nav class="navbar" aria-label="Main Navigation">
+                <a href="{{ url_for('landing_page') }}" class="nav-link register-nav-btn">
+                    Back to Home
+                </a>
+            </nav>
+
+        </div>
+    </header>
+
+    <!-- ================= MAIN ================= -->
+    <main class="about-main-layout">
+
+        <!-- HERO SECTION -->
+        <section class="about-hero-block">
+
+            <span class="mini-title">SYSTEM PROFILE</span>
+
+            <h1 class="welcome-heading">About the System</h1>
+
+            <p class="tagline">
+                A modern academic performance platform designed to improve grading efficiency, student tracking,
+                and motivation through a structured digital ranking system.
+            </p>
+
+        </section>
+
+        <!-- SYSTEM OVERVIEW -->
+        <section class="about-system-section">
+
+            <div class="doc-header">
+                <span class="doc-badge">Overview</span>
+                <h2>Platform Architecture</h2>
+            </div>
+
+            <div class="doc-body">
+
+                <p>
+                    <strong>Student Ranking Management System</strong> is a web-based platform designed to help educational institutions 
+                    efficiently track, manage, and evaluate student academic performance in a structured environment.
+                </p>
+
+                <p>
+                    It provides students with real-time access to grades, rankings, achievements, and performance history 
+                    to monitor their academic progress and encourage continuous improvement.
+                </p>
+
+                <p>
+                    Teachers can manage student records, input grades, and generate ranking results through a centralized dashboard 
+                    with complete CRUD functionality for efficient academic management.
+                </p>
+
+                <p>
+                    The system integrates automated leaderboards, analytics, notifications, and performance tracking 
+                    to create a competitive yet motivating learning environment.
+                </p>
+
+            </div>
+
+        </section>
+
+        <!-- FEATURES -->
+        <section class="features-highlight-container">
+
+            <div class="features-grid">
+
+                <div class="stat-box feature-spec">
+                    <h3>🏆 Gamification System</h3>
+                    <p>Encourages student engagement through ranking-based competition and achievement rewards.</p>
+                </div>
+
+                <div class="stat-box feature-spec">
+                    <h3>📊 Analytics Dashboard</h3>
+                    <p>Provides visual insights of student performance for better academic decision-making.</p>
+                </div>
+
+                <div class="stat-box feature-spec">
+                    <h3>🛠️ Admin Control</h3>
+                    <p>Allows teachers to efficiently manage grades, records, and class performance.</p>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- VISION & MISSION -->
+        <section class="others">
+
+            <div class="visionAndMission-container">
+
+                <div class="login-container vismis-override">
+
+                    <h2 class="login-title" style="color: var(--accent); font-weight: 700;">
+                        Vision
+                    </h2>
+
+                    <p class="login-subtitle" style="line-height:1.7;">
+                        To build a modern and innovative academic environment that promotes excellence, discipline, 
+                        and continuous student improvement through digital transformation.
+                    </p>
+
+                </div>
+
+                <div class="login-container vismis-override">
+
+                    <h2 class="login-title" style="color: var(--accent); font-weight: 700;">
+                        Mission
+                    </h2>
+
+                    <p class="login-subtitle" style="line-height:1.7;">
+                        To provide an efficient and interactive student ranking system that helps learners track performance, 
+                        while supporting educators in managing academic data effectively.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- TECH STACK -->
+            <div class="login-container tech-stack-card">
+
+                <h2 class="login-title">Technical Specifications</h2>
+
+                <p class="login-subtitle">
+                    Built using modern web technologies for scalability and performance:
+                </p>
+
+                <div class="tech-spec-pills">
+                    <span>HTML5</span>
+                    <span>CSS3</span>
+                    <span>JavaScript</span>
+                    <span>Python (Flask)</span>
+                    <span>SQLAlchemy</span>
+                </div>
+
+            </div>
+
+            <!-- DEVELOPERS -->
+            <div class="objectives-container dev-card-override">
+
+                <h2 class="register-title">Project Developers</h2>
+
+                <p class="register-subtitle">
+                    The RankUp System is developed by a dedicated team focused on building efficient, scalable, 
+                    and user-friendly academic management systems.
+                </p>
+
+                <div class="tech-spec-pills" style="margin-top:12px;">
+
+                    <span>John Michael Peralta</span>
+                    <span>Jones Adrian Manongsong</span>
+                    <span>Mica Ella Dela Cruz</span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rank Up | Teacher Dashboard</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/teacherDashboard.css') }}">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- ================= SIDEBAR ================= -->
+    <aside class="sidebar">
+
+        <div class="sidebar-top">
+            <h2>Rank Up</h2>
+            <span>Student Ranking Management System</span>
+        </div>
+
+        <nav class="sidebar-menu">
+
+            <a href="{{ url_for('teacher_dashboard') }}" class="active">
+                 Home
+            </a>
+
+            <a href="{{ url_for('create_subject') }}">
+                 Create Subject
+            </a>
+
+            <a href="{{ url_for('student_grades') }}">
+                 Create Student Grades
+            </a>
+
+            <a href="{{ url_for('join_subject') }}">
+                 Join Student to Subject
+            </a>
+
+        </nav>
+
+        <div class="quick-info">
+
+            <h3>Quick Info</h3>
+
+            <p>
+                Manage subjects, student grades, and leaderboard rankings
+                with ease.
+            </p>
+
+        </div>
+
+        <div class="teacher-card">
+
+            <div class="teacher-icon">
+                👨‍🏫
+            </div>
+
+            <div>
+                <h3>Teacher</h3>
+                <p>Welcome back!</p>
+                <span class="online-status">
+                    ● Online
+                </span>
+            </div>
+
+        </div>
+
+    </aside>
+
+    <!-- ================= CONTENT ================= -->
+    <main class="content">
+
+        <!-- ================= TOPBAR ================= -->
+        <section class="topbar">
+
+            <div class="topbar-left">
+
+                <div class="topbar-icon">
+                    
+                </div>
+
+                <div>
+
+                    <h2>Teacher Dashboard</h2>
+
+                    <p>
+                        Search students, manage grades, and monitor leaderboard
+                        rankings efficiently.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <a href="{{ url_for('landing_page') }}" class="back-home">
+                 Back to Home
+            </a>
+
+        </section>
+
+        <!-- ================= SEARCH ================= -->
+        <section class="search-section">
+
+            <div class="search-left">
+
+                <div class="search-icon">
+                    
+                </div>
+
+                <div>
+
+                    <h2>
+                        Search <span>Student</span>
+                    </h2>
+
+                    <p>
+                        Find student information quickly and efficiently.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <form 
+                class="search-form"
+                action="{{ url_for('teacher_dashboard') }}"
+                method="GET"
+            >
+
+                <input 
+                    type="text"
+                    name="query"
+                    placeholder="Search student..."
+                    value="{{ search_query }}"
+                    required
+                >
+
+                <button type="submit">
+                    Search
+                </button>
+
+            </form>
+
+        </section>
+
+        <!-- ================= SEARCH RESULTS ================= -->
+        {% if search_query %}
+
+        <section class="search-results-wrapper">
+
+            {% if search_results %}
+
+                {% for row in search_results %}
+
+                <div class="student-card">
+
+                    <div class="student-avatar">
+                        👤
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            {{ row['full_name'] }}
+                        </h3>
+
+                        <p>
+                            {{ row['course'] }}
+                            {{ row['year_level'] }}
+                            {{ row['section'] }}
+                        </p>
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            {% else %}
+
+                <p style="color:gray;">
+                    No students found.
+                </p>
+
+            {% endif %}
+
+        </section>
+
+        {% endif %}
+
+        <!-- ================= LEADERBOARD ================= -->
+        <section class="leaderboard-card">
+
+            <div class="leaderboard-header">
+
+                <div class="leaderboard-icon">
+                    🏆
+                </div>
+
+                <div>
+
+                    <h2>
+                        Student <span>Leaderboard</span>
+                    </h2>
+
+                    <p>
+                        Top performing students based on average grades.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="table-container">
+
+                <table>
+
+                    <tr>
+                        <th>Rank</th>
+                        <th>Name</th>
+                        <th>Average</th>
+                        <th>Badge</th>
+                    </tr>
+
+                    {% for row in leaderboard_results %}
+                    <tr>
+
+                        <td>{{ loop.index }}</td>
+
+                        <td>{{ row['full_name'] }}</td>
+
+                        <td>{{ row['gwa'] }}</td>
+
+                        <td>
+
+                            {% if loop.index == 1 %}
+                                🥇 Gold
+
+                            {% elif loop.index == 2 %}
+                                🥈 Silver
+
+                            {% elif loop.index == 3 %}
+                                🥉 Bronze
+
+                            {% else %}
+                                🎖 Participant
+                            {% endif %}
+
+                        </td>
+
+                    </tr>
+                    {% endfor %}
+
+                </table>
+
+            </div>
+
+        </section>
+
+        <!-- ================= FEATURE CARDS ================= -->
+        <section class="feature-grid">
+
+            <div class="feature-card">
+
+                <div class="feature-icon blue">
+                    👥
+                </div>
+
+                <div>
+
+                    <h3>Subject Management</h3>
+
+                    <p>
+                        Create, update, and organize subjects for your classes.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="feature-card">
+
+                <div class="feature-icon green">
+                    🎓
+                </div>
+
+                <div>
+
+                    <h3>Student Enrollment</h3>
+
+                    <p>
+                        Join students to subjects and manage their records.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="feature-card">
+
+                <div class="feature-icon purple">
+                    📋
+                </div>
+
+                <div>
+
+                    <h3>Grade Management</h3>
+
+                    <p>
+                        Create and update student grades efficiently.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="feature-card">
+
+                <div class="feature-icon orange">
+                    📊
+                </div>
+
+                <div>
+
+                    <h3>Reports & Analytics</h3>
+
+                    <p>
+                        View leaderboard and performance analytics.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ================= FACULTY INFO ================= -->
+        <section class="faculty-info">
+
+            <div class="faculty-main">
+
+                <div class="faculty-icon">
+                    🏛
+                </div>
+
+                <div>
+
+                    <h2>
+                        Faculty <span>Information</span>
+                    </h2>
+
+                    <p>
+                        Details about the teaching faculty and department.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="faculty-details">
+
+                <div class="faculty-box">
+
+                    <h3>Teacher</h3>
+
+                    <p>Subject Instructor</p>
+
+                </div>
+
+                <div class="faculty-box">
+
+                    <h3>Department</h3>
+
+                    <p>Academic Department</p>
+
+                </div>
+
+                <div class="faculty-box">
+
+                    <h3>Session</h3>
+
+                    <p>2025 - 2026</p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,675 @@
+/* ================= ROOT COLORS ================= */
+
+:root{
+
+    --primary:#3b82f6;
+    --secondary:#6366f1;
+    --accent:#60a5fa;
+
+    --bg:#020617;
+
+    --card:rgba(255,255,255,0.08);
+
+    --border:rgba(255,255,255,0.08);
+
+    --text:#cbd5e1;
+}
+
+/* ================= GOOGLE FONT ================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+/* ================= BODY ================= */
+
+body{
+
+    background:
+    radial-gradient(circle at top left, rgba(59,130,246,0.18), transparent 35%),
+    radial-gradient(circle at bottom right, rgba(99,102,241,0.18), transparent 35%),
+    linear-gradient(135deg, #020617, #0f172a, #020617);
+
+    color:white;
+
+    overflow-x:hidden;
+}
+
+/* ================= DASHBOARD ================= */
+
+.dashboard{
+
+    display:flex;
+
+    min-height:100vh;
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar{
+
+    width:260px;
+
+    background:linear-gradient(
+        180deg,
+        #0f172a,
+        #1e293b,
+        #2563eb
+    );
+
+    padding:30px 20px;
+
+    position:sticky;
+
+    top:0;
+
+    height:100vh;
+
+    box-shadow:5px 0 20px rgba(59,130,246,.15);
+}
+
+.sidebar-top h2{
+
+    font-size:34px;
+
+    line-height:1.1;
+
+    margin-bottom:6px;
+
+    font-weight:700;
+}
+
+.sidebar-top span{
+
+    font-size:14px;
+
+    color:var(--text);
+}
+
+/* ================= SIDEBAR MENU ================= */
+
+.sidebar-menu{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+    margin-top:35px;
+}
+
+.sidebar-menu a{
+
+    text-decoration:none;
+
+    color:white;
+
+    padding:14px 16px;
+
+    border-radius:14px;
+
+    transition:.3s;
+
+    font-size:15px;
+
+    font-weight:500;
+}
+
+.sidebar-menu a:hover,
+.sidebar-menu .active{
+
+    background:rgba(255,255,255,.12);
+
+    transform:translateX(6px);
+}
+
+/* ================= CONTENT ================= */
+
+.content{
+
+    flex:1;
+
+    padding:28px;
+}
+
+/* ================= TOPBAR ================= */
+
+.topbar{
+
+    background:linear-gradient(
+        135deg,
+        #1e293b,
+        #2563eb,
+        #6366f1
+    );
+
+    border-radius:24px;
+
+    padding:28px;
+
+    margin-bottom:24px;
+
+    box-shadow:0 10px 25px rgba(59,130,246,.18);
+}
+
+.topbar h2{
+
+    font-size:38px;
+
+    margin-bottom:8px;
+
+    font-weight:700;
+}
+
+.topbar p{
+
+    color:var(--text);
+
+    font-size:15px;
+
+    line-height:1.7;
+}
+
+/* ================= COMMON CARD ================= */
+
+.profile-card,
+.stat-box,
+.leaderboard-card,
+.subject-performance,
+.settings-dropdown{
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:24px;
+
+    backdrop-filter:blur(14px);
+
+    box-shadow:0 8px 20px rgba(0,0,0,.18);
+}
+
+/* ================= PROFILE ================= */
+
+.profile-card{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:45px;
+
+    padding:24px;
+
+    margin-bottom:24px;
+
+    border-left:5px solid var(--primary);
+}
+
+/* ================= PROFILE DETAILS ================= */
+
+.profile-details{
+
+    flex:1;
+}
+
+/* ================= PROFILE HEADER ================= */
+
+.profile-header{
+
+    margin-bottom:18px;
+}
+
+.profile-header h2{
+
+    font-size:28px;
+
+    font-weight:700;
+
+    margin-bottom:6px;
+
+    color:white;
+}
+
+.profile-header p{
+
+    font-size:14px;
+
+    color:var(--text);
+
+    line-height:1.7;
+}
+
+/* ================= STUDENT INFO ================= */
+
+.student-info{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:12px;
+}
+
+/* ================= LEFT / RIGHT ================= */
+
+.left-info,
+.right-info{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+}
+
+/* ================= INFO CARD ================= */
+
+.info-card{
+
+    background:linear-gradient(
+        135deg,
+        rgba(255,255,255,.06),
+        rgba(255,255,255,.03)
+    );
+
+    border:1px solid rgba(255,255,255,.05);
+
+    border-left:5px solid var(--accent);
+
+    border-radius:14px;
+
+    padding:10px 14px;
+
+    min-height:68px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    transition:.3s;
+}
+
+.info-card:hover{
+
+    transform:translateY(-3px);
+
+    background:rgba(255,255,255,.08);
+
+    box-shadow:0 10px 20px rgba(59,130,246,.12);
+}
+
+.info-card span{
+
+    font-size:11px;
+
+    color:var(--text);
+
+    margin-bottom:3px;
+}
+
+.info-card h3{
+
+    font-size:14px;
+
+    font-weight:600;
+
+    color:white;
+
+    word-break:break-word;
+
+    line-height:1.4;
+}
+
+/* ================= PROFILE IMAGE ================= */
+
+.profile-image{
+
+    width:340px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+}
+
+.profile-image img{
+
+    width:320px;
+
+    height:320px;
+
+    object-fit:cover;
+
+    border-radius:28px;
+
+    border:4px solid rgba(255,255,255,.08);
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,.30),
+    0 0 18px rgba(59,130,246,.22);
+
+    transition:.3s;
+}
+
+.profile-image img:hover{
+
+    transform:scale(1.03);
+}
+
+.profile-image p{
+
+    margin-top:14px;
+
+    font-size:13px;
+
+    color:var(--text);
+
+    line-height:1.7;
+
+    max-width:260px;
+}
+
+/* ================= STATS ================= */
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:18px;
+
+    margin-bottom:24px;
+}
+
+.stat-box{
+
+    padding:22px;
+
+    border-left:5px solid var(--primary);
+
+    transition:.3s;
+}
+
+.stat-box:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 10px 20px rgba(59,130,246,.15);
+}
+
+.stat-icon{
+
+    font-size:28px;
+
+    margin-bottom:12px;
+}
+
+.stat-box h3{
+
+    font-size:22px;
+
+    margin-bottom:8px;
+}
+
+.stat-box p{
+
+    color:var(--text);
+
+    line-height:1.7;
+
+    font-size:14px;
+}
+
+/* ================= LEADERBOARD ================= */
+
+.leaderboard-card{
+
+    padding:24px;
+
+    margin-bottom:24px;
+
+    border-left:5px solid var(--primary);
+
+    overflow-x:auto;
+}
+
+.leaderboard-top h2{
+
+    font-size:24px;
+
+    margin-bottom:6px;
+}
+
+.leaderboard-top p{
+
+    color:var(--text);
+
+    margin-bottom:18px;
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+}
+
+th{
+
+    background:linear-gradient(
+        90deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+    padding:14px;
+
+    font-size:14px;
+
+    color:white;
+}
+
+td{
+
+    padding:15px;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+    color:white;
+
+    font-size:14px;
+}
+
+tr:hover{
+
+    background:rgba(255,255,255,.04);
+}
+
+/* ================= SUBJECT PERFORMANCE ================= */
+
+.subject-performance{
+
+    padding:24px;
+
+    margin-bottom:24px;
+
+    border-left:5px solid var(--primary);
+}
+
+.subject-performance h2{
+
+    margin-bottom:20px;
+
+    font-size:24px;
+}
+
+.subject{
+
+    margin-bottom:18px;
+}
+
+.subject-name{
+
+    margin-bottom:8px;
+
+    font-size:14px;
+
+    color:white;
+}
+
+.progress-bar{
+
+    width:100%;
+
+    height:12px;
+
+    background:rgba(255,255,255,.08);
+
+    border-radius:20px;
+
+    overflow:hidden;
+}
+
+.progress-fill{
+
+    height:100%;
+
+    border-radius:20px;
+
+    background:linear-gradient(
+        90deg,
+        var(--primary),
+        var(--secondary)
+    );
+}
+
+.fill1{
+    width:88%;
+}
+
+.fill2{
+    width:75%;
+}
+
+.fill3{
+    width:92%;
+}
+
+/* ================= SETTINGS ================= */
+
+.settings-dropdown{
+
+    overflow:hidden;
+
+    border-left:5px solid var(--primary);
+}
+
+.settings-header{
+
+    padding:18px 22px;
+
+    cursor:pointer;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    background:rgba(255,255,255,.04);
+
+    font-weight:600;
+
+    font-size:15px;
+}
+
+.settings-content{
+
+    display:none;
+
+    padding:18px;
+
+    gap:12px;
+
+    flex-direction:column;
+}
+
+.settings-dropdown.active .settings-content{
+
+    display:flex;
+}
+
+.setting-item{
+
+    padding:14px;
+
+    border-radius:14px;
+
+    background:rgba(255,255,255,.05);
+
+    border-left:4px solid var(--accent);
+
+    font-size:14px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1000px){
+
+    .dashboard{
+        flex-direction:column;
+    }
+
+    .sidebar{
+
+        width:100%;
+
+        height:auto;
+
+        position:relative;
+    }
+
+    .profile-card{
+
+        flex-direction:column;
+    }
+
+    .student-info{
+
+        grid-template-columns:1fr;
+    }
+
+    .profile-image{
+
+        width:100%;
+    }
+
+    .profile-image img{
+
+        width:240px;
+
+        height:240px;
+    }
+
+    .stats{
+
+        grid-template-columns:1fr;
+    }
+}

@@ -1,0 +1,219 @@
+/* ================= GOOGLE FONT ================= */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* ================= ROOT ================= */
+:root{
+    --primary:#3b82f6;
+    --secondary:#6366f1;
+    --accent:#60a5fa;
+
+    --bg:#020617;
+
+    --card:rgba(255,255,255,0.07);
+
+    --border:rgba(255,255,255,0.08);
+
+    --text:#cbd5e1;
+}
+
+/* ================= GLOBAL ================= */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:
+    radial-gradient(circle at top left, rgba(59,130,246,0.18), transparent 35%),
+    radial-gradient(circle at bottom right, rgba(99,102,241,0.18), transparent 35%),
+    linear-gradient(135deg,#020617,#0f172a,#020617);
+
+    color:white;
+    overflow-x:hidden;
+}
+
+/* ================= HEADER ================= */
+.header{
+    width:100%;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:999;
+
+    padding:16px 8%;
+
+    background:rgba(2,6,23,0.75);
+
+    backdrop-filter:blur(12px);
+
+    border-bottom:1px solid rgba(255,255,255,0.05);
+}
+
+.header-container{
+    position:relative;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.brand-title{
+    font-size:15px;
+    font-weight:600;
+    opacity:0.85;
+}
+
+.page-title{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+
+    font-size:22px;
+    font-weight:700;
+}
+
+.back-btn{
+    text-decoration:none;
+    color:white;
+
+    padding:10px 14px;
+    border-radius:12px;
+
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+
+    font-size:14px;
+
+    transition:.25s ease;
+
+    position:relative;
+    z-index:2;
+}
+
+.back-btn:hover{
+    transform:translateY(-2px);
+}
+
+/* ================= CONTAINER ================= */
+.container{
+    padding:110px 20px 40px;
+}
+
+/* ================= FORM CARD ================= */
+.form-card{
+    max-width:780px;
+    margin:0 auto;
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:20px;
+
+    padding:20px;
+
+    backdrop-filter:blur(14px);
+
+    border-left:4px solid var(--primary);
+
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+
+    transition:.3s ease;
+}
+
+.form-card:hover{
+    transform:translateY(-3px);
+}
+
+.form-card h2{
+    font-size:20px;
+    margin-bottom:15px;
+}
+
+/* ================= FORM ================= */
+form{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+
+    padding:12px;
+
+    border-radius:14px;
+
+    background:rgba(255,255,255,0.04);
+
+    border:1px solid rgba(255,255,255,0.06);
+
+    border-left:3px solid var(--accent);
+
+    transition:.2s ease;
+}
+
+.form-group:hover{
+    background:rgba(255,255,255,0.06);
+    transform:translateY(-2px);
+}
+
+.form-group label{
+    font-size:11px;
+    margin-bottom:5px;
+    color:var(--text);
+}
+
+.form-group input{
+    padding:10px 12px;
+
+    border-radius:10px;
+
+    border:none;
+    outline:none;
+
+    font-size:14px;
+
+    background:rgba(255,255,255,0.92);
+}
+
+/* ================= BUTTON ================= */
+.submit-btn{
+    grid-column:1 / -1;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:14px;
+
+    font-size:15px;
+    font-weight:600;
+
+    color:white;
+
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+
+    cursor:pointer;
+
+    transition:.25s ease;
+
+    box-shadow:0 10px 20px rgba(59,130,246,0.18);
+}
+
+.submit-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 15px 25px rgba(59,130,246,0.25);
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:800px){
+    form{
+        grid-template-columns:1fr;
+    }
+
+    .page-title{
+        font-size:18px;
+    }
+}
