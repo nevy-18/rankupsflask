@@ -7,18 +7,18 @@ app = Flask(__name__)
 app.secret_key = 'your_secret_key_here'
 
 # =========================================================
-# DATABASE CONFIGURATION (Direct URL Injection for Vercel)
+# DATABASE CONFIGURATION (Bagong Variable para Ma-bypass ang Cache)
 # =========================================================
-# Kukunin ang DATABASE_URL mula sa Vercel Environment Variables.
-raw_uri = os.environ.get('DATABASE_URL')
+# Babasahin ang bagong variable 'AIVEN_DB_URI' para mapilitang mag-refresh ang Vercel container.
+raw_uri = os.environ.get('AIVEN_DB_URI')
 
 if raw_uri:
-    # 1. Siguraduhing gamit ang tamang protocol driver (mysql+pymysql)
+    # Siguraduhing gamit ang tamang protocol driver para sa SQLAlchemy
     if raw_uri.startswith('mysql://'):
         raw_uri = raw_uri.replace('mysql://', 'mysql+pymysql://', 1)
     
-    # 2. Kung walang explicit ssl parameter ang URL, idugtong natin derecho sa string
-    if 'ssl_mode' not in raw_uri and 'ssl-mode' not in raw_uri:
+    # Direktang idugtong ang tamang parameter gamit ang underscore (_) para iwas sa TypeError
+    if 'ssl_mode' not in raw_uri:
         if '?' in raw_uri:
             raw_uri += '&ssl_mode=REQUIRED'
         else:
@@ -31,7 +31,7 @@ else:
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-# Iniwan nating walang extra engine options para hindi na magka-conflict sa keyword arguments
+# Walang kaakibat na 'SQLALCHEMY_ENGINE_OPTIONS' para permanenteng burado ang 'ssl-mode' keyword error
 db = SQLAlchemy(app)
 
 @app.route('/', methods=['GET', 'POST'])
@@ -76,7 +76,6 @@ def landing_page():
                 elif teacher_query['role'] == 'teacher':
                     return redirect(url_for('teacher_dashboard'))
         
-        # Kung walang nag-match na criteria:
         error = "Invalid username or password"
         
     return render_template('landingPage.html', error=error)
@@ -399,7 +398,7 @@ def create_subject():
 
 @app.route('/teacher/student-grades', methods=['GET', 'POST'])
 def student_grades():
-    if 'user_id' not in session or session.get('role') == 'student':
+    if 'user_id' not in session or session.get('role') != 'admin' and session.get('role') != 'teacher':
         flash('Please login first', 'error')
         return redirect(url_for('teacher_login'))
 
