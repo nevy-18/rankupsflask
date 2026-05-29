@@ -19,10 +19,12 @@ if raw_uri.startswith('mysql://'):
 app.config['SQLALCHEMY_DATABASE_URI'] = raw_uri
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-# Aiven cloud architecture requires an explicit SSL handshake execution context
+# FIXED: Native PyMySQL dictionary configuration format for Aiven SSL handshakes
 app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
     "connect_args": {
-        "ssl": {"ssl_mode": "REQUIRED"}
+        "ssl": {
+            "ssl_mode": "REQUIRED"
+        }
     }
 }
 
